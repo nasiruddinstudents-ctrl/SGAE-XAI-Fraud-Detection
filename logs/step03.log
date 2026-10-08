@@ -1,0 +1,56 @@
+nohup: ignoring input
+Device cuda | nodes train 354,324 + val 118,108 (test not loaded) | features 445
+{
+ "card_edges_violations": 0,
+ "addr_product_edges_violations": 0,
+ "n_card_edges": 4275671,
+ "n_addr_product_edges": 2087366,
+ "n_edges_after_dedup": 6254631,
+ "all_edges_point_forward_in_time": true,
+ "all_src_index_lt_dst_index": true,
+ "edges_by_partition": {
+  "train->train": 4634205,
+  "val->val": 1460428,
+  "train->val": 159998
+ },
+ "frac_nodes_without_in_edges": {
+  "train": 0.004642643456271661,
+  "val": 0.0021082399160090763
+ }
+}
+/workspace/step03_gnn.py:150: UserWarning: Sparse invariant checks are implicitly disabled. Memory errors (e.g. SEGFAULT) will occur when operating on a sparse tensor which violates the invariants, but checks incur performance overhead. To silence this warning, explicitly opt in or out. See `torch.sparse.check_sparse_tensor_invariants.__doc__` for guidance.  (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/Context.cpp:848.)
+  A = torch.sparse_coo_tensor(torch.from_numpy(np.stack([dst, src])),
+  gnn seed=42 step 100: loss 0.8477 | val PR-AUC 0.4285 (best 0.4285, 7s)
+  gnn seed=42 step 200: loss 0.8070 | val PR-AUC 0.4486 (best 0.4510, 13s)
+  gnn seed=42 step 300: loss 0.6986 | val PR-AUC 0.4604 (best 0.4617, 19s)
+  gnn seed=42 step 400: loss 0.6471 | val PR-AUC 0.4593 (best 0.4617, 26s)
+  gnn seed=42 step 500: loss 0.6164 | val PR-AUC 0.4601 (best 0.4643, 32s)
+  gnn seed=42 step 600: loss 0.6325 | val PR-AUC 0.4567 (best 0.4643, 38s)
+  gnn seed=42 step 700: loss 0.5827 | val PR-AUC 0.4603 (best 0.4643, 44s)
+Causality check: {'max_abs_logit_difference': 0.0, 'passed': True}
+gnn seed 42: val PR-AUC 0.4643 | ROC-AUC 0.8711
+  gnn seed=43 step 100: loss 0.8532 | val PR-AUC 0.4326 (best 0.4326, 6s)
+  gnn seed=43 step 200: loss 0.7762 | val PR-AUC 0.4610 (best 0.4610, 13s)
+  gnn seed=43 step 300: loss 0.7263 | val PR-AUC 0.4646 (best 0.4678, 19s)
+  gnn seed=43 step 400: loss 0.6941 | val PR-AUC 0.4605 (best 0.4679, 25s)
+  gnn seed=43 step 500: loss 0.7385 | val PR-AUC 0.4628 (best 0.4679, 32s)
+  gnn seed=43 step 600: loss 0.6398 | val PR-AUC 0.4598 (best 0.4679, 38s)
+gnn seed 43: val PR-AUC 0.4679 | ROC-AUC 0.8694
+  gnn seed=44 step 100: loss 0.8609 | val PR-AUC 0.4345 (best 0.4345, 6s)
+  gnn seed=44 step 200: loss 0.8080 | val PR-AUC 0.4415 (best 0.4538, 13s)
+  gnn seed=44 step 300: loss 0.7331 | val PR-AUC 0.4600 (best 0.4618, 19s)
+  gnn seed=44 step 400: loss 0.7291 | val PR-AUC 0.4582 (best 0.4628, 25s)
+  gnn seed=44 step 500: loss 0.6558 | val PR-AUC 0.4544 (best 0.4628, 31s)
+  gnn seed=44 step 600: loss 0.6591 | val PR-AUC 0.4534 (best 0.4628, 38s)
+gnn seed 44: val PR-AUC 0.4628 | ROC-AUC 0.8708
+  no-edges seed=42 step 100: loss 0.8466 | val PR-AUC 0.4422 (best 0.4422, 3s)
+  no-edges seed=42 step 200: loss 0.7367 | val PR-AUC 0.4653 (best 0.4663, 7s)
+  no-edges seed=42 step 300: loss 0.7415 | val PR-AUC 0.4711 (best 0.4796, 10s)
+  no-edges seed=42 step 400: loss 0.6403 | val PR-AUC 0.4732 (best 0.4811, 13s)
+  no-edges seed=42 step 500: loss 0.6106 | val PR-AUC 0.4736 (best 0.4827, 16s)
+  no-edges seed=42 step 600: loss 0.5960 | val PR-AUC 0.4756 (best 0.4827, 20s)
+  no-edges seed=42 step 700: loss 0.5944 | val PR-AUC 0.4696 (best 0.4827, 23s)
+
+VALIDATION summary (no test nodes loaded; ± = seed spread, not a CI):
+  GNN (historical graph)  val PR-AUC 0.4650 ± 0.0026
+  Same model, no edges    val PR-AUC 0.4827

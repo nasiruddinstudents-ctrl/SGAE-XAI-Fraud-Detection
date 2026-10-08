@@ -1,0 +1,53 @@
+{
+  "truncation_test_at_end_of_train": {
+    "cutoff_TransactionDT": 8745772,
+    "rows_checked": 354324,
+    "max_abs_difference": 2.0665194000457632e-08,
+    "features_checked": [
+      "card_is_first_tx",
+      "card_n_prior_tx_all",
+      "card_n_prior_tx_24h",
+      "card_n_prior_tx_7d",
+      "card_amt_ratio_prior_7d_mean",
+      "card_secs_since_prev_tx",
+      "card_abs_dist1_change_vs_prev",
+      "card_n_distinct_productcd_prior_7d",
+      "card1_n_prior_tx_all",
+      "card1_n_prior_tx_7d",
+      "card2_n_prior_tx_all",
+      "card2_n_prior_tx_7d",
+      "addr1_n_prior_tx_all",
+      "addr1_n_prior_tx_7d"
+    ],
+    "mismatching_features": {},
+    "passed": true
+  },
+  "truncation_test_at_end_of_val": {
+    "cutoff_TransactionDT": 12192842,
+    "rows_checked": 472432,
+    "max_abs_difference": 2.0665194000457632e-08,
+    "features_checked": [
+      "card_is_first_tx",
+      "card_n_prior_tx_all",
+      "card_n_prior_tx_24h",
+      "card_n_prior_tx_7d",
+      "card_amt_ratio_prior_7d_mean",
+      "card_secs_since_prev_tx",
+      "card_abs_dist1_change_vs_prev",
+      "card_n_distinct_productcd_prior_7d",
+      "card1_n_prior_tx_all",
+      "card1_n_prior_tx_7d",
+      "card2_n_prior_tx_all",
+      "card2_n_prior_tx_7d",
+      "addr1_n_prior_tx_all",
+      "addr1_n_prior_tx_7d"
+    ],
+    "mismatching_features": {},
+    "passed": true
+  },
+  "partitions_time_ordered": true,
+  "preprocessing_fit_on": "train only (categories, medians, min/max)",
+  "labels_used_in_features": false,
+  "keys_seen_in_train_frac_of_test_rows": 0.9790022691096285,
+  "passed": true
+}

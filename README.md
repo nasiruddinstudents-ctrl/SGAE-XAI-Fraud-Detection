@@ -9,5 +9,10 @@ Code for the paper:
 > Mohammad Nasir Uddin, Westcliff University<br>
 > *Under review at CAAI Transactions on Intelligence Technology, 2026 (revision R1)*
 
-## Note on versions
-This repository currently contains the original experiment code (`sgae_complete_experiments.py`, `gnn_graphsage_pipeline.py`) and GNN outputs. The leakage-controlled chronological pipeline used in the revised manuscript will be added here.
+## Repository structure
+- **Root:** leakage-controlled chronological pipeline used in the revised manuscript (R1), run in order `step01` → `step07`. Chronological train/validation/test split; scalers, velocity features and graph edges fit on training-window data only; SGAE calibrated on validation and applied to every test row. See `DATA_FLOW_SPEC.md`, `leakage_audit.json` and `split_report.json`.
+- **`logs/`:** run logs for each step.
+- **`legacy/`:** original experiment code from the first submission, kept for transparency. It contains known issues (pre-split scaling, random split, full-graph construction, test-set tuning) that the revision corrects; do not use it to reproduce the revised results.
+
+## Data
+Uses the IEEE-CIS Fraud Detection dataset, available from Kaggle under its own terms (not redistributed here).

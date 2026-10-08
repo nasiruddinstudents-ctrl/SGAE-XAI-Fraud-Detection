@@ -1,0 +1,40 @@
+nohup: ignoring input
+Device cuda | train 354,324 val 118,108 (test not loaded) | LSTM L=8 seed=42
+    EG first batch: peak GPU 6.57 GB | est. 0.3 min for 20,000 rows
+Train-sample attributions done (29s)
+    EG first batch: peak GPU 11.12 GB | est. 1.2 min for 118,108 rows
+Validation LSTM attributions run A done (104s)
+    EG first batch: peak GPU 11.23 GB | est. 1.2 min for 118,108 rows
+Validation LSTM attributions run B done (178s)
+  forward block 2/5 done
+  forward block 3/5 done
+  forward block 4/5 done
+  forward block 5/5 done
+  xgb_only                 PR-AUC in-sample 0.6233 | forward-time 0.6100
+  lstm_only                PR-AUC in-sample 0.4598 | forward-time 0.4657
+  equal_weight             PR-AUC in-sample 0.6044 | forward-time 0.5964
+  static_v1_0.6            PR-AUC in-sample 0.5898 | forward-time 0.5825
+  tuned_constant           PR-AUC in-sample 0.6237 | forward-time 0.6104
+  confidence_gate          PR-AUC in-sample 0.6037 | forward-time 0.5940
+  stacking                 PR-AUC in-sample 0.6241 | forward-time 0.6094
+  learned_gate             PR-AUC in-sample 0.6235 | forward-time 0.6109
+  learned_gate_plus_A      PR-AUC in-sample 0.6238 | forward-time 0.6108
+  sgae_v1_weighting_rule   PR-AUC in-sample 0.5717 | forward-time 0.5652
+  sgae_tuned               PR-AUC in-sample 0.6261 | forward-time 0.6127
+
+VALIDATION, forward-time PR-AUC on blocks 2-5 (fair comparison; test untouched):
+  sgae_tuned               0.6127
+  learned_gate             0.6109
+  learned_gate_plus_A      0.6108
+  tuned_constant           0.6104
+  xgb_only                 0.6100
+  stacking                 0.6094
+  equal_weight             0.5964
+  confidence_gate          0.5940
+  static_v1_0.6            0.5825
+  sgae_v1_weighting_rule   0.5652
+  lstm_only                0.4657
+Selected SGAE: {'K': 5, 'w0': 0.0, 'c': 0.1, 'neg': 0.4, 'sigma_A': 0.29702115058898926}
+Permuted-A control: 0.6222 ± 0.0005 | SGAE in-sample 0.6261
+LSTM attribution repeatability (run A vs B, top-20 Spearman): mean 0.986
+Frozen config sha256: 0881df6f96de8b79  (215s)

@@ -1,0 +1,53 @@
+{
+  "n_total": 590540,
+  "key_cols": [
+    "card1",
+    "card2",
+    "card3",
+    "card4",
+    "card5",
+    "card6"
+  ],
+  "gap_days": 0.0,
+  "n_features": 445,
+  "n_raw_features": 431,
+  "n_engineered_features": 14,
+  "partitions": {
+    "train": {
+      "n": 354324,
+      "n_fraud": 11988,
+      "fraud_rate": 0.03383344057980831,
+      "TransactionDT_min": 86400,
+      "TransactionDT_max": 8745772,
+      "day_min": 1.0,
+      "day_max": 101.22,
+      "n_keys": 12687,
+      "frac_values_outside_train_range": 0.0,
+      "sha_X": "33a53765f8edea0a"
+    },
+    "val": {
+      "n": 118108,
+      "n_fraud": 4611,
+      "fraud_rate": 0.03904053916754157,
+      "TransactionDT_min": 8745798,
+      "TransactionDT_max": 12192842,
+      "day_min": 101.22,
+      "day_max": 141.12,
+      "n_keys": 7184,
+      "frac_values_outside_train_range": 0.0011754239026326315,
+      "sha_X": "9704c73f947f61a0"
+    },
+    "test": {
+      "n": 118108,
+      "n_fraud": 4064,
+      "fraud_rate": 0.034409184813899145,
+      "TransactionDT_min": 12192900,
+      "TransactionDT_max": 15811131,
+      "day_min": 141.12,
+      "day_max": 183.0,
+      "n_keys": 7474,
+      "frac_values_outside_train_range": 0.0027876789972841464,
+      "sha_X": "83557c65c3188b0d"
+    }
+  }
+}

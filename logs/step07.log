@@ -1,0 +1,46 @@
+nohup: ignoring input
+Loaded 590,540 rows in v1 file order | device cuda
+Rung 0 (saved v1 GNN): {'pr_auc': 0.6333990538949619, 'roc_auc': 0.924787666844263}
+/workspace/step07_ladder.py:68: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["time_since_last_tx"] = g["TransactionDT"].diff().fillna(0)
+/workspace/step07_ladder.py:69: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["tx_count_24h"] = g.cumcount() + 1                                   # expanding count
+/workspace/step07_ladder.py:70: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["amt_vs_7d_mean"] = d["TransactionAmt"] / (g["TransactionAmt"].transform(lambda x: x.rolling(7, min_periods=1).mean()) + 1e-6)
+/workspace/step07_ladder.py:72: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["unique_merchant_7d"] = first.groupby(d["card1"]).cumsum()          # expanding distinct ProductCD
+/workspace/step07_ladder.py:73: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["geo_dist_proxy"] = g["dist1"].diff().abs().fillna(0)
+/workspace/step07_ladder.py:74: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["card1_tx_count"] = g["card1"].transform("count")
+/workspace/step07_ladder.py:75: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["card2_tx_count"] = d.groupby("card2")["card2"].transform("count").fillna(0)
+/workspace/step07_ladder.py:76: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d["addr1_tx_count"] = d.groupby("addr1")["addr1"].transform("count").fillna(0)
+/workspace/step07_ladder.py:115: UserWarning: Sparse invariant checks are implicitly disabled. Memory errors (e.g. SEGFAULT) will occur when operating on a sparse tensor which violates the invariants, but checks incur performance overhead. To silence this warning, explicitly opt in or out. See `torch.sparse.check_sparse_tensor_invariants.__doc__` for guidance.  (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/Context.cpp:848.)
+  return torch.sparse_coo_tensor(torch.from_numpy(np.stack([e[1], e[0]])), torch.from_numpy(val), (n, n)).coalesce().to(dev)
+Features and v1 graph built (385,018 directed pairs, 99s)
+1_v1_design_random_split: xgb PR-AUC 0.8543 ROC 0.9719 | gnn PR-AUC 0.6540 ROC 0.9182 (592s)
+2_plus_chronological_split: xgb PR-AUC 0.5097 ROC 0.8861 | gnn PR-AUC 0.3122 ROC 0.8033 (766s)
+/workspace/step07_ladder.py:135: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  Xg, yg = torch.from_numpy(X).to(dev), torch.from_numpy(y.astype(np.float32)).to(dev)
+3_plus_v2_features_train_only_preprocessing__retrospective_GNN: gnn PR-AUC 0.1993 ROC 0.8153 (901s)
+
+REPRODUCTION LADDER — test PR-AUC (mean of 3 seeds) / ROC-AUC
+  0_original_v1_saved_predictions
+      gnn  PR-AUC 0.6334  ROC-AUC 0.9248
+  1_v1_design_random_split
+      xgb  PR-AUC 0.8543  ROC-AUC 0.9719 | F1 val-thr 0.810 vs test-thr 0.811
+      gnn  PR-AUC 0.6540  ROC-AUC 0.9182 | F1 val-thr 0.642 vs test-thr 0.644
+  2_plus_chronological_split
+      xgb  PR-AUC 0.5097  ROC-AUC 0.8861 | F1 val-thr 0.505 vs test-thr 0.507
+      gnn  PR-AUC 0.3122  ROC-AUC 0.8033 | F1 val-thr 0.403 vs test-thr 0.411
+  3_plus_v2_features_train_only_preprocessing__retrospective_GNN
+      gnn  PR-AUC 0.1993  ROC-AUC 0.8153 | F1 val-thr 0.333 vs test-thr 0.336
+      xgb  PR-AUC 0.5038  ROC-AUC 0.8903
+  4_plus_forward_only_graph__v2_real_time
+      xgb  PR-AUC 0.5038  ROC-AUC 0.8903
+      gnn  PR-AUC 0.3743  ROC-AUC 0.8331
+  v1 file ID column misordered: True | labels match after realignment: True
+  v1 graph edges pointing backward in time: 192,498
+(901s)
