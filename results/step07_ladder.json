@@ -1,0 +1,142 @@
+{
+  "rungs": {
+    "0_original_v1_saved_predictions": {
+      "gnn": {
+        "pr_auc": 0.6333990538949619,
+        "roc_auc": 0.924787666844263
+      }
+    },
+    "1_v1_design_random_split": {
+      "xgb": {
+        "pr_auc_mean": 0.8542953776354479,
+        "pr_auc_by_seed": [
+          0.854507230075958,
+          0.8543232852056827,
+          0.8540556176247032
+        ],
+        "roc_auc_mean": 0.9718585007837223,
+        "pr_auc_seed42_ci95": [
+          0.8403450941467379,
+          0.867915775534976
+        ],
+        "f1_val_threshold_seed42": 0.8096416938110749,
+        "f1_test_optimal_threshold_seed42": 0.8106120304701865
+      },
+      "gnn": {
+        "pr_auc_mean": 0.6539619639046698,
+        "pr_auc_by_seed": [
+          0.6657274866259721,
+          0.6426095477123012,
+          0.6535488573757358
+        ],
+        "roc_auc_mean": 0.9182481007629605,
+        "pr_auc_seed42_ci95": [
+          0.6383046999560106,
+          0.6904895578674695
+        ],
+        "f1_val_threshold_seed42": 0.6418282548476454,
+        "f1_test_optimal_threshold_seed42": 0.6438208310847274
+      }
+    },
+    "2_plus_chronological_split": {
+      "xgb": {
+        "pr_auc_mean": 0.5097412157671206,
+        "pr_auc_by_seed": [
+          0.5063148348393025,
+          0.509731422632886,
+          0.5131773898291735
+        ],
+        "roc_auc_mean": 0.8860596656453498,
+        "pr_auc_seed42_ci95": [
+          0.4525109331795827,
+          0.5521637422571298
+        ],
+        "f1_val_threshold_seed42": 0.505339065316877,
+        "f1_test_optimal_threshold_seed42": 0.507101673463648
+      },
+      "gnn": {
+        "pr_auc_mean": 0.31223819894930455,
+        "pr_auc_by_seed": [
+          0.36393072507112495,
+          0.36548962653586375,
+          0.207294245240925
+        ],
+        "roc_auc_mean": 0.8032963352353252,
+        "pr_auc_seed42_ci95": [
+          0.2966115990331206,
+          0.42547229500024064
+        ],
+        "f1_val_threshold_seed42": 0.403434725658565,
+        "f1_test_optimal_threshold_seed42": 0.4106673673147661
+      }
+    },
+    "3_plus_v2_features_train_only_preprocessing__retrospective_GNN": {
+      "gnn": {
+        "pr_auc_mean": 0.19930263349958022,
+        "pr_auc_by_seed": [
+          0.19624771724153217,
+          0.19738419302350493,
+          0.20427599023370355
+        ],
+        "roc_auc_mean": 0.8152805383496823,
+        "pr_auc_seed42_ci95": [
+          0.12629939655397335,
+          0.3943064382134841
+        ],
+        "f1_val_threshold_seed42": 0.3332542131497745,
+        "f1_test_optimal_threshold_seed42": 0.3361572348356489
+      },
+      "xgb": {
+        "pr_auc_mean": 0.5037779007875347,
+        "pr_auc_by_seed": [
+          0.5025484004259567,
+          0.5017500652211874,
+          0.5070352367154601
+        ],
+        "roc_auc_mean": 0.8902993124010431,
+        "source": "step 5 locked test"
+      }
+    },
+    "4_plus_forward_only_graph__v2_real_time": {
+      "xgb": {
+        "pr_auc_mean": 0.5037779007875347,
+        "pr_auc_by_seed": [
+          0.5025484004259567,
+          0.5017500652211874,
+          0.5070352367154601
+        ],
+        "roc_auc_mean": 0.8902993124010431,
+        "source": "step 5 locked test"
+      },
+      "gnn": {
+        "pr_auc_mean": 0.37433894985125243,
+        "pr_auc_by_seed": [
+          0.3758149465124281,
+          0.3761486645909192,
+          0.37105323845041005
+        ],
+        "roc_auc_mean": 0.8330624980495164,
+        "source": "step 5 locked test"
+      }
+    }
+  },
+  "notes": {
+    "v1_test_set_reproduced_exactly": true,
+    "v1_saved_file_id_column_misordered": true,
+    "v1_labels_match_after_realigning_ids": true,
+    "v1_graph_edges_directed_pairs": 385018,
+    "v1_graph_edges_by_partition_under_chrono_split": {
+      "train->train": 267770,
+      "train->val": 25096,
+      "val->train": 25096,
+      "train->test": 15062,
+      "test->train": 15062,
+      "val->val": 14288,
+      "test->test": 10766,
+      "val->test": 5939,
+      "test->val": 5939
+    },
+    "v1_graph_edges_from_later_to_earlier_transaction": 192498
+  },
+  "secs": 901.4
+}

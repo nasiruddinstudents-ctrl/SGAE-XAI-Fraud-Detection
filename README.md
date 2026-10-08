@@ -12,6 +12,8 @@ Code for the paper:
 ## Repository structure
 - **Root:** leakage-controlled chronological pipeline used in the revised manuscript (R1), run in order `step01` → `step07`. Chronological train/validation/test split; scalers, velocity features and graph edges fit on training-window data only; SGAE calibrated on validation and applied to every test row. See `DATA_FLOW_SPEC.md`, `leakage_audit.json` and `split_report.json`.
 - **`logs/`:** run logs for each step.
+- **`results/`:** final test metrics, explanation-quality results and ablation ladder reported in the manuscript.
+- **`manifest.txt`:** SHA-256 checksums of the scripts and outputs as run.
 - **`legacy/`:** original experiment code from the first submission, kept for transparency. It contains known issues (pre-split scaling, random split, full-graph construction, test-set tuning) that the revision corrects; do not use it to reproduce the revised results.
 
 ## Data
